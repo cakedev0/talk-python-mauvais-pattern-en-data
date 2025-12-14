@@ -3,7 +3,7 @@ index:
 slides:
   # https://revealjs.com/themes/
   theme: white #night
-  highlight_theme: vs
+  highlight_theme: github
   separator_vertical: ^\s*-v-\s*$
 revealjs: # https://revealjs.com/config/
   height: 1080
