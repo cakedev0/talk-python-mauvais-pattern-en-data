@@ -7,7 +7,7 @@ title: "Mauvais patterns en data science Python"
   overflow: auto;
 </style>
 
-## Un mauvais patterns en Python data et comment l'éviter
+## Un mauvais pattern en Python data et comment l'éviter
 #### Lighting talk
 
 16 décembre 2025 - Présenté à  [laturbine.coop](https://turbine.coop/) par Arthur Lacote
@@ -85,15 +85,19 @@ Ces 3 algos peuvent être en $ O(n^2) $
 
 ## Un pattern pas si rare:
 
-- Dictionnaires : vu tel quel dans script qui ne finissais jamais
+- Dictionnaires : vu tel quel dans script qui ne finissais jamais<!-- .element: class="fragment" -->
 - Pandas : croisé plusieurs fois chez des data scientists<!-- .element: class="fragment" -->
-- Numpy : vu dans scikit-learn !<!-- .element: class="fragment" -->
+<li class="fragment">
+NumPy : vu dans scikit-learn ! (<a href="https://github.com/scikit-learn/scikit-learn/pull/32911">Ma PR</a> pour améliorer ça)
+</li>
 
 -v-
 
 ## Pourquoi on écrit ça?
 
+<div class="fragment">
 La complexité algorithmique est cachée par la syntaxe
+</div>
 
 ```python
 for user in df['user'].unique():
@@ -152,6 +156,7 @@ sum_by_group = np.bincount(group_idx, weights=x, minlength=n_groups)
 
 avg_by_group = sum_by_group / n_by_group
 ```
+<!-- .element: class="fragment" -->
 
 **Autre opération: minimum**
 <!-- .element: class="fragment" -->
@@ -162,7 +167,7 @@ np.minimum.at(min_by_group, group_idx, x)
 ```
 <!-- .element: class="fragment" -->
 
-Les [ufuncs de numpy](https://numpy.org/doc/stable/reference/ufuncs.html#methods): `.at`, `.reduce`, `.accumulate`
+✨ Les [ufuncs de numpy](https://numpy.org/doc/stable/reference/ufuncs.html#methods): `.at` ✨ 
 <!-- .element: class="fragment" -->
 
 ---
@@ -178,7 +183,6 @@ Les [ufuncs de numpy](https://numpy.org/doc/stable/reference/ufuncs.html#methods
 ## 1. IDs non-denses
 
 ```python
-x = np.random.rand(n)
 group_id = np.random.choice(np.random.choice(10**18, n_groups), n)
 ```
 
